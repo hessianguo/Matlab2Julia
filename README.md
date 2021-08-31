@@ -24,4 +24,6 @@ List the equivalent Matlab commands  in Julia if there are different.
 |`plot(x,y,'r')`|`plot(x,y,color=:red)`|Set red color in the plot|
 |`plot(x,y,':')`|`plot(x,y,linestyle=:dot)`|Use dot line in the plot|
 |`plot(x,y);hold on; plot(x,z)`|`plot(x,y);plot!(x,z)`| Plot in the same figure
-|`subplot(121); plot(x,y); subplot(122);plot(x,z)`|`plot(plot(x,y),plot(x,z),layout=(1,2))`|Subplot
+|`subplot(121); plot(x,y); subplot(122);plot(x,z)`|`plot(plot(x,y),plot(x,z),layout=(1,2))`|Subplot|
+|`p=polyfit(x,y,k)`|`p=fit(x,y,k)`|Fit a polynomial of degree k|
+|`polyval(p,xx)`|`p.(xx)`|Evaluate the fitted polynomial at xx|
