@@ -33,3 +33,4 @@ List the equivalent Matlab commands  in Julia if there are different.
 |`x(x>3)`|`filter(z->z>3, x)`| Remove element less than 3|
 |`randi(10,3,1)`|`rand(1:10, 3,1)`| Generate an array of random integer between 1 and 10|
 |`a(1,3)`|`a[1,3]`|Access element of an array a|
+|`abs(b-a)<eps`|`iaapprox(a,b)`|Floating-point equal|
