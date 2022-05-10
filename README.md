@@ -1,36 +1,43 @@
 # Matlab2Julia
+
 List the equivalent Matlab commands  in Julia if there are different.
 
-
 ## Most common commands
-| Matlab Command | Julia Comand | Description | 
-| --- | --- | --- |
-| `eye(n)`| `Matrix{Float64}(I, n,n)` | Identity matrix  |
-| `max(A, 1)` | `maximum(A, dims=1)` | Find the maximum element of an array|
-|`[m, idx] = max(a)` | `m,idx = findmax(a)` | Find the maximum element and index of an vector a|
-| `[~, idx] = max(a)` | `idx = argmax(a)` | Find the index of maximum element |
-| `min(A, 1)` | `minimum(A, dims=1)` | Find the minimum element of an array|
-|`[m, idx] = min(a)` | `m,idx = findmin(a)` | Find the minimum element and index of an vector a|
-| `[~, idx] = min(a)` | `idx = argmin(a)` | Find the index of minimum element |
-| `squeeze(A)`|`dropdims(A, dims=3)` |Remove the dimensions specified by dims from array A |
-|`diag(a, k)` |  `diagm(k => a)` | create a diagonal matrix from a with k|
-|`diag(a)` |  `Diagonal(a)` | create a diagonal matrix from a; using LinearAlgebra|
-|`flipup(A)`|`reverse(A, dims=1)`| Flip in the up-down direction |
-|`fliplr(A)`|`reverse(A, dims=2)`| Flip in the left-right direction |
-|`flip(A, k)`|`reverse(A, dims=k)`| Flip in the k-dimensional|
-|`semilogx(x,y)`|`plot(x,y,xaxis=:log)`|Plot in log scale in x coordinate; using Plots|
-|`semilogy(x,y)`|`plot(x,y,yaxis=:log)`|Plot in log scale in y coordinate; using Plots|
-|`loglog(x,y)`|`plot(x,y,xaxis=:log, yaxis=:log)`|Plot in log scale in x and y coordinate; using Plots|
-|`plot(x,y,'r')`|`plot(x,y,color=:red)`|Set red color in the plot; using Plots|
-|`plot(x,y,':')`|`plot(x,y,linestyle=:dot)`|Use dot line in the plot; using Plots|
-|`plot(x,y);hold on; plot(x,z)`|`plot(x,y);plot!(x,z)`| Plot in the same figur; using Plots|
-|`subplot(121); plot(x,y); subplot(122);plot(x,z)`|`plot(plot(x,y),plot(x,z),layout=(1,2))`|Subplot, ; using Plots|
-|`p=polyfit(x,y,k)`|`p=fit(x,y,k)`|Fit a polynomial of degree k; using Polynomials|
-|`polyval(p,xx)`|`p.(xx)`|Evaluate the fitted polynomial at xx; using Polynomials|
-|`a(end+1)=1`|`append!(a,1)`|Add 1 to the end of the vector a|
-|`a+bi`|`a+bim`|Create a complex number|
-|`1:2:5`|`collect(1:2:5)`|Create 1d array [1; 3; 5 ]|
-|`x(x>3)`|`filter(z->z>3, x)`| Remove element less than 3|
-|`randi(10,3,1)`|`rand(1:10, 3,1)`| Generate an array of random integer between 1 and 10|
-|`a(1,3)`|`a[1,3]`|Access element of an array a|
-|`abs(b-a)<eps`|`iaapprox(a,b)`|Floating-point equal|
+
+| **Matlab Command**                                                                                | **Julia Comand**                                                        | **Description**                                         |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------- |
+| `eye(n)`                                                                                          | `Matrix{Float64}(I, n,n)`                                               | Identity matrix                                         |
+| `max(A, 1)`                                                                                       | `maximum(A, dims=1)`                                                    | Find the maximum element of an array                    |
+| `[m, idx] = max(a)`                                                                               | `m,idx = findmax(a)`                                                    | Find the maximum element and index of an vector a       |
+| `[~, idx] = max(a)`                                                                               | `idx = argmax(a)`                                                       | Find the index of maximum element                       |
+| `min(A, 1)`                                                                                       | `minimum(A, dims=1)`                                                    | Find the minimum element of an array                    |
+| `[m, idx] = min(a)`                                                                               | `m,idx = findmin(a)`                                                    | Find the minimum element and index of an vector a       |
+| `[~, idx] = min(a)`                                                                               | `idx = argmin(a)`                                                       | Find the index of minimum element                       |
+| `squeeze(A)`                                                                                      | `dropdims(A, dims=3)`                                                   | Remove the dimensions specified by dims from array A    |
+| `diag(a, k)`                                                                                      | `diagm(k => a)`                                                         | create a diagonal matrix from a with k                  |
+| `diag(a)`                                                                                         | `Diagonal(a)`                                                           | create a diagonal matrix from a; using LinearAlgebra    |
+| `flipup(A)`                                                                                       | `reverse(A, dims=1)`                                                    | Flip in the up-down direction                           |
+| `fliplr(A)`                                                                                       | `reverse(A, dims=2)`                                                    | Flip in the left-right direction                        |
+| `flip(A, k)`                                                                                      | `reverse(A, dims=k)`                                                    | Flip in the k-dimensional                               |
+| `semilogx(x,y)`                                                                                   | `plot(x,y,xaxis=:log)`                                                  | Plot in log scale in x coordinate; using Plots          |
+| `semilogy(x,y)`                                                                                   | `plot(x,y,yaxis=:log)`                                                  | Plot in log scale in y coordinate; using Plots          |
+| `loglog(x,y)`                                                                                     | `plot(x,y,xaxis=:log, yaxis=:log)`                                      | Plot in log scale in x and y coordinate; using Plots    |
+| `plot(x,y,'r')`                                                                                   | `plot(x,y,color=:red)`                                                  | Set red color in the plot; using Plots                  |
+| `plot(x,y,':')`                                                                                   | `plot(x,y,linestyle=:dot)`                                              | Use dot line in the plot; using Plots                   |
+| `plot(x,y);hold on; plot(x,z)`                                                                    | `plot(x,y);plot!(x,z)`                                                  | Plot in the same figur; using Plots                     |
+| `subplot(121); plot(x,y); subplot(122);plot(x,z)`                                                 | `plot(plot(x,y),plot(x,z),layout=(1,2))`                                | Subplot, ; using Plots                                  |
+| x = 0:0.01:1; y = 0:0.01:1; [xx, yy] = meshgrid(x, y);z = sin(pi*xx).*sin(pi*yy); surf(xx, yy, z) | x = 0:0.01:1; y = 0.01:1; z = sin.(pi*x’).*sin.(pi*y); surface(x, y, z) | Surface plot of 2D function                             |
+| `p=polyfit(x,y,k)`                                                                                | `p=fit(x,y,k)`                                                          | Fit a polynomial of degree k; using Polynomials         |
+| `polyval(p,xx)`                                                                                   | `p.(xx)`                                                                | Evaluate the fitted polynomial at xx; using Polynomials |
+| `a(end+1)=1`                                                                                      | `append!(a,1)`                                                          | Add 1 to the end of the vector a                        |
+| `a+bi`                                                                                            | `a+bim`                                                                 | Create a complex number                                 |
+| `1:2:5`                                                                                           | `collect(1:2:5)`                                                        | Create 1d array [1; 3; 5 ]                              |
+| `x(x>3)`                                                                                          | `filter(z->z>3, x)`                                                     | Remove element less than 3                              |
+| `randi(10,3,1)`                                                                                   | `rand(1:10, 3,1)`                                                       | Generate an array of random integer between 1 and 10    |
+| `a(1,3)`                                                                                          | `a[1,3]`                                                                | Access element of an array a                            |
+| `abs(b-a)<eps`                                                                                    | `iaapprox(a,b)`                                                         | Floating-point equal                                    |
+| linspace(a, b, n+1)                                                                               | collect(range(a,b,length=n+1))                                          | 1d array of n+1 evenly spaced point in (a, b)           |
+| 2.^(2:6)                                                                                          | 2 .^ (2:6)                                                              | Array of 1d vector power                                |
+| diag(b) + diag(a, 1) + diag(c,-1)                                                                 | Tridiagonal(a, b, c)                                                    | Create diagonal matrix with diagonal enties (a, b, c)   |
+| class(a)                                                                                          | typeof(a)                                                               | Type of object a                                        |
+| full(A)                                                                                           | collect(A)                                                              | Convert sparse matrix A into a dense matrix             |
